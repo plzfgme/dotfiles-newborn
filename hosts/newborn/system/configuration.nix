@@ -1,15 +1,20 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 {
-  imports = [ ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # System
   system.stateVersion = "23.05";
 
   # Bootloader
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    devices = [ "nodev" ];
+  boot.loader = {
+    grub = {
+      enable = true;
+      efiSupport = true;
+      devices = [ "nodev" ];
+    };
+    efi.canTouchEfiVariables = true;
   };
 
   # Localization
@@ -43,6 +48,10 @@
     };
   };
   nixpkgs = {
+    overlays = [
+      inputs.rust-overlay.overlays.default
+      inputs.eww.overlays.default
+    ];
     config = {
       allowUnfree = true;
     };
@@ -59,25 +68,27 @@
     enable = true;
     layout = "us";
     xkbVariant = "";
-
-    displayManager.sddm = {
-      enable = true;
-    };
   };
-  programs.hyprland.enable = true;
+  programs.sway.enable = true;
   xdg = {
     portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-      ];
+      wlr.enable = true;
     };
   };
   programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
+      };
+    };
+  };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
@@ -87,21 +98,35 @@
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
     fontconfig = {
-      sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans CJK TC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Color Emoji" ];
-      serif = [ "Noto Serif" "Noto Serif CJK SC" "Noto Serif CJK TC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-      emoji = [ "Noto Color Emoji" ];
+      defaultFonts = {
+        sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans CJK TC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Color Emoji" ];
+        serif = [ "Noto Serif" "Noto Serif CJK SC" "Noto Serif CJK TC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Color Emoji" ];
+        monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
 
   environment.systemPackages = with pkgs; [
     home-manager
     inputs.agenix.packages.x86_64-linux.default # TODO: Add to pkgs.
-    kitty
-    rofi
     git
     curl
+    neovim
+    nushell
+    microsoft-edge-dev
+    vscode
+    nil
+    nixpkgs-fmt
   ];
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
 
   services.openssh = {
     enable = true;
@@ -110,13 +135,15 @@
     };
   };
   programs.ssh.enableAskPassword = false;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   users.users = {
     plzfgme = {
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-      ];
-      extraGroups = [ "networkmanager" "wheel" "video" ];
+      extraGroups = [ "networkmanager" "wheel" ];
       shell = pkgs.nushell;
     };
   };

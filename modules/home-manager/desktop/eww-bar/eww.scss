@@ -1,0 +1,115 @@
+* {
+    all: unset;
+}
+
+.bar>* {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000000;
+    padding: 4px 10px 4px 10px;
+}
+
+.menu-button {
+    &>* {
+        border-radius: 6px;
+
+        &:hover {
+            background-color: #ffffff;
+        }
+    }
+}
+
+.left-pad-button {
+    &>* {
+        border-radius: 6px;
+
+        &:hover {
+            background-color: #ffffff;
+        }
+    }
+}
+
+.workspaces {
+    .workspace-entry {
+        margin-left: 10px;
+
+        &.active {
+            border-style: solid;
+            border-bottom-width: 2px;
+            border-bottom-color: #0067c0;
+        }
+
+        &>* {
+            border-radius: 6px;
+
+            &:hover {
+                background-color: #ffffff;
+            }
+
+            &>label {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.systray .popup {
+    background-color: #ffffff;
+
+    menuitem {
+        border-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: #000000;
+    }
+}
+
+.settings-toggle-button {
+    &>* {
+        border-radius: 6px;
+
+        &>* {
+            padding: 0 4px 0 4px;
+        }
+
+        &:hover {
+            background-color: #ffffff;
+        }
+    }
+}
+
+.settings {
+    background-color: #e6edf8;
+    border-radius: 10px;
+
+    .upper {
+        padding: 20px;
+    }
+
+    .lower {
+        padding: 0 20px 0 20px;
+        color: #000000;
+        background-color: #dae2f2;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .settings-item {
+        color: #000000;
+
+        .button {
+            background-color: #ffffff;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: #0067c0;
+            }
+        }
+    }
+}
+
+.time {
+    border-radius: 6px;
+    font-size: 13px;
+
+    &:hover {
+        background-color: #ffffff;
+    }
+}
