@@ -82,7 +82,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.regreet}/bin/regreet";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c sway'";
       };
     };
   };
@@ -139,12 +139,13 @@
     enable = true;
     enableSSHSupport = true;
   };
+  programs.zsh.enable = true;
 
   users.users = {
     plzfgme = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 }

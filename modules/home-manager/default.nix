@@ -8,6 +8,9 @@ rec {
   programs = {
     nushell = ./programs/nushell;
     foot = ./programs/foot;
+    alacritty = ./programs/alacritty;
+    starship = ./programs/starship;
+    bat = ./programs/bat;
   };
 
   allModules = [
@@ -16,5 +19,8 @@ rec {
     desktop.eww-bar
     programs.nushell
     programs.foot
+    programs.alacritty
+    programs.starship
+    programs.bat
   ];
 }

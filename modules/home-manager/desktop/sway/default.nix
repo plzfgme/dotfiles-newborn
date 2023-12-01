@@ -16,6 +16,11 @@ in
       default = "${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
       description = "Menu to use";
     };
+    startup = mkOption {
+      type = with types; listOf attrs;
+      default = [ ];
+      description = "Pass to wayland.windowManager.sway.config.startup";
+    };
     extraConfig = mkOption {
       type = types.lines;
       default = "";
@@ -157,6 +162,8 @@ in
             childBorder = "#${config.colorScheme.colors.base0D}";
           };
         };
+
+        startup = cfg.startup;
       };
       extraConfig = cfg.extraConfig;
       extraConfigEarly = cfg.extraConfigEarly;

@@ -21,19 +21,22 @@
   newborn.homeManagerModules = {
     desktop.sway = {
       enable = true;
-      terminal = "foot";
+      # Before this pull request to be merged: https://github.com/swaywm/sway/pull/7226, input method on sway only works with XWayland.
+      terminal = "env -u WAYLAND_DISPLAY alacritty";
       extraConfig = ''
         output Virtual-1 resolution 1920x1080
       '';
     };
-    # desktop.waybar.enable = true;
     desktop.eww-bar = {
       enable = true;
       systemd.enable = true;
     };
 
+    programs.alacritty.enable = true;
     programs.foot.enable = true;
     programs.nushell.enable = true;
+    programs.starship.enable = true;
+    programs.bat.enable = true;
   };
 
   # Color scheme
@@ -49,6 +52,21 @@
   };
   gtk.enable = true;
 
+  # Fcitx
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-gtk
+        libsForQt5.fcitx5-qt
+
+        fcitx5-chinese-addons
+        fcitx5-mozc
+      ];
+    };
+  };
+
+
   # Packages
   home = {
     username = "plzfgme";
@@ -59,6 +77,7 @@
       bitwarden
       bitwarden-cli
       okular
+      fd
     ];
   };
   programs.home-manager.enable = true;
@@ -72,6 +91,34 @@
       theme = "tokyonight_storm";
     };
   };
+  programs.zsh = {
+    enable = true;
+    zplug = {
+      enable = true;
+      plugins = [
+        {
+          name = "plugins/git";
+          tags = [ "from:oh-my-zsh" ];
+        }
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zsh-users/zsh-syntax-highlighting"; }
+        { name = "zsh-users/zsh-completions"; }
+        { name = "marlonrichert/zsh-autocomplete"; }
+        { name = "jeffreytse/zsh-vi-mode"; }
+      ];
+    };
+    initExtra = ''
+      bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+      bindkey - M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+    '';
+  };
+  programs.zoxide.enable = true;
+  programs.eza = {
+    enable = true;
+    icons = true;
+  };
+  programs.ripgrep.enable = true;
+  programs.fzf.enable = true;
 
   # Git
   programs.git = {
