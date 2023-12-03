@@ -164,6 +164,8 @@ in
         };
 
         startup = cfg.startup;
+
+        defaultWorkspace = "workspace number 1";
       };
       extraConfig = cfg.extraConfig;
       extraConfigEarly = cfg.extraConfigEarly;

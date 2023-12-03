@@ -22,12 +22,19 @@
     desktop.sway = {
       enable = true;
       # Before this pull request to be merged: https://github.com/swaywm/sway/pull/7226, input method on sway only works with XWayland.
-      terminal = "env -u WAYLAND_DISPLAY alacritty";
+      terminal = "env -u WAYLAND_DISPLAY alacritty -e env WAYLAND_DISPLAY=$WAYLAND_DISPLAY $SHELL";
       extraConfig = ''
         output Virtual-1 resolution 1920x1080
       '';
+      startup = [
+        { command = "nm-applet"; }
+      ];
     };
     desktop.eww-bar = {
+      enable = true;
+      systemd.enable = true;
+    };
+    desktop.swww = {
       enable = true;
       systemd.enable = true;
     };
@@ -35,8 +42,10 @@
     programs.alacritty.enable = true;
     programs.foot.enable = true;
     programs.nushell.enable = true;
+    programs.zsh.enable = true;
     programs.starship.enable = true;
-    programs.bat.enable = true;
+
+    collections.basic-cmd-tools.enable = true;
   };
 
   # Color scheme
@@ -77,7 +86,6 @@
       bitwarden
       bitwarden-cli
       okular
-      fd
     ];
   };
   programs.home-manager.enable = true;
@@ -91,34 +99,6 @@
       theme = "tokyonight_storm";
     };
   };
-  programs.zsh = {
-    enable = true;
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "plugins/git";
-          tags = [ "from:oh-my-zsh" ];
-        }
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "zsh-users/zsh-syntax-highlighting"; }
-        { name = "zsh-users/zsh-completions"; }
-        { name = "marlonrichert/zsh-autocomplete"; }
-        { name = "jeffreytse/zsh-vi-mode"; }
-      ];
-    };
-    initExtra = ''
-      bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-      bindkey - M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-    '';
-  };
-  programs.zoxide.enable = true;
-  programs.eza = {
-    enable = true;
-    icons = true;
-  };
-  programs.ripgrep.enable = true;
-  programs.fzf.enable = true;
 
   # Git
   programs.git = {
@@ -141,5 +121,5 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 }

@@ -109,9 +109,6 @@ in
           Environment = "PATH=${pkgs.bash}/bin";
           ExecStart = "${pkgs.eww-wayland}/bin/eww daemon --no-daemonize -c ${config.xdg.configHome}/eww-bar";
           ExecStartPost = "${pkgs.eww-wayland}/bin/eww open bar -c ${config.xdg.configHome}/eww-bar";
-          ExecReload = "${pkgs.coreutils}/bin/kill - SIGUSR2 $MAINPID";
-          Restart = "on-failure";
-          KillMode = "mixed";
         };
 
         Install = { WantedBy = [ cfg.systemd.target ]; };
