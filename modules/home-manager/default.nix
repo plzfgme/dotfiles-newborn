@@ -13,6 +13,7 @@ rec {
     alacritty = ./programs/alacritty;
     starship = ./programs/starship;
     bat = ./programs/bat;
+    neovim = ./programs/neovim;
   };
 
   collections = {
@@ -31,6 +32,7 @@ rec {
     programs.alacritty
     programs.starship
     programs.bat
+    programs.neovim
 
     collections.basic-cmd-tools
   ];

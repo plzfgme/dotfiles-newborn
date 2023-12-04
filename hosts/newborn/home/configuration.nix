@@ -44,6 +44,7 @@
     programs.nushell.enable = true;
     programs.zsh.enable = true;
     programs.starship.enable = true;
+    programs.neovim.enable = true;
 
     collections.basic-cmd-tools.enable = true;
   };
@@ -86,6 +87,7 @@
       bitwarden
       bitwarden-cli
       okular
+      wl-clipboard
     ];
   };
   programs.home-manager.enable = true;
@@ -99,6 +101,7 @@
       theme = "tokyonight_storm";
     };
   };
+  xdg.configFile."nvim/lua/plugins/lsp.lua".source = ./dot_config/nvim/lua/plugins/lsp.lua;
 
   # Git
   programs.git = {
