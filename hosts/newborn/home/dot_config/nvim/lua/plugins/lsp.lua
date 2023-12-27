@@ -4,6 +4,17 @@ return {
     opts = {
       servers = {
         nil_ls = {},
+        typst_lsp = {},
+      },
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        nix = { "nixpkgs_fmt" },
+        typst = { "typstfmt" },
       },
     },
   },

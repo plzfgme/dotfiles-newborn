@@ -7,6 +7,10 @@
   # System
   system.stateVersion = "23.11";
 
+  # VM Guest
+  services.spice-vdagentd.enable = true;
+  virtualisation.qemu.guestAgent.enable = true;
+
   # Bootloader
   boot.loader = {
     grub = {
@@ -88,6 +92,7 @@
   };
 
   fonts = {
+    enableDefaultPackages = true;
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
@@ -101,7 +106,7 @@
       defaultFonts = {
         sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans CJK TC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Color Emoji" ];
         serif = [ "Noto Serif" "Noto Serif CJK SC" "Noto Serif CJK TC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Color Emoji" ];
-        monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+        monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" "Noto Sans Mono CJK TC" "Noto Sans Mono CJK JP" "Noto Sans Mono CJK KR" "Noto Color Emoji" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };
@@ -114,7 +119,6 @@
     curl
     neovim
     nushell
-    microsoft-edge-dev
     vscode
     nil
     nixpkgs-fmt

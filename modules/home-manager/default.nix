@@ -14,6 +14,7 @@ rec {
     starship = ./programs/starship;
     bat = ./programs/bat;
     neovim = ./programs/neovim;
+    rofi = ./programs/rofi;
   };
 
   collections = {
@@ -33,6 +34,7 @@ rec {
     programs.starship
     programs.bat
     programs.neovim
+    programs.rofi
 
     collections.basic-cmd-tools
   ];

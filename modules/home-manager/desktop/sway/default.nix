@@ -21,6 +21,11 @@ in
       default = [ ];
       description = "Pass to wayland.windowManager.sway.config.startup";
     };
+    extraKeybindings = mkOption {
+      type = types.attrs;
+      default = {};
+      description = "Extra keybindings";
+    };
     extraConfig = mkOption {
       type = types.lines;
       default = "";
@@ -123,7 +128,7 @@ in
 
             # Enter resize mode
             "${modifier}+r" = "mode \"resize\"";
-          };
+          } // cfg.extraKeybindings;
 
         modes = {
           resize =

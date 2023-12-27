@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-23_11.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -14,6 +15,10 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     eww.url = "github:ralismark/eww/tray-3";
     eww.inputs.nixpkgs.follows = "nixpkgs";
+    pointersay.url = "github:plzfgme/pointersay";
+    pointersay.inputs.nixpkgs.follows = "nixpkgs";
+    clitrans.url = "github:plzfgme/clitrans";
+    clitrans.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:

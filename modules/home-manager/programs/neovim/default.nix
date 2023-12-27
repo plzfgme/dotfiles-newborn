@@ -28,7 +28,7 @@ let
 in
 {
   options.newborn.homeManagerModules.programs.neovim = {
-    enable = mkEnableOption "neovim with setup configuration";
+    enable = mkEnableOption "neovim with LazyVim";
     enableBasicLspAndFormatters = mkOption {
       type = types.bool;
       default = true;
