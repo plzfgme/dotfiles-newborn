@@ -32,6 +32,7 @@
       '';
       startup = [
         { command = "nm-applet"; }
+        { command = "thunderbird"; }
       ];
     };
     desktop.eww-bar = {
@@ -115,6 +116,7 @@
       tldr
       vlc
       tmux
+      thunderbird
     ];
   };
   programs.home-manager.enable = true;
