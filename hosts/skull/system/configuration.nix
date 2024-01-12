@@ -3,8 +3,43 @@
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
 
+    inputs.agenix.nixosModules.default
+
+    inputs.daeuniverse.nixosModules.dae
+    inputs.daeuniverse.nixosModules.daed
+
+    outputs.nixosModules.allModules
+
     ./hardware-configuration.nix
   ];
+
+  newborn.nixosModules = {
+    secrets.enable = true;
+
+    services.dae = {
+      enable = true;
+      package =
+        let
+          pname = "dae";
+          version = "unstable-2023-11-15";
+          src = pkgs.fetchFromGitHub {
+            owner = "daeuniverse";
+            repo = pname;
+            rev = "25c047a766a8ae33e6acdecd9b5ab74b3d9baeb1";
+            hash = "sha256-iwqNVkjYNNd46Yu1vt427aW0srCkZoG8bTGKimP3AjM=";
+            fetchSubmodules = true;
+          };
+          vendorHash = "sha256-OD6Ztjw2O+2bf8DYDEptp9YfMpsma/Ag1/s5rKyCTmQ=";
+        in
+        (pkgs.dae.override {
+          buildGoModule = args: pkgs.buildGoModule (
+            args // {
+              inherit pname version src vendorHash;
+            }
+          );
+        });
+    };
+  };
 
   # System
   system.stateVersion = "23.11";
@@ -63,6 +98,7 @@
   networking = {
     hostName = "skull";
     networkmanager.enable = true;
+
   };
 
   # Desktop

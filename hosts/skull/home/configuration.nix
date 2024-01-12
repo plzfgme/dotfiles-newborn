@@ -92,10 +92,10 @@
   home = {
     username = "plzfgme";
     homeDirectory = "/home/plzfgme";
-    sessionVariables = {
-      http_proxy = "http://localhost:7890";
-      https_proxy = "http://localhost:7890";
-    };
+    # sessionVariables = {
+    #   http_proxy = "http://localhost:7890";
+    #   https_proxy = "http://localhost:7890";
+    # };
     packages = with pkgs; [
       nil
       nixpkgs-fmt

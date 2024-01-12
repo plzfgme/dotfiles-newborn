@@ -19,6 +19,8 @@
     pointersay.inputs.nixpkgs.follows = "nixpkgs";
     clitrans.url = "github:plzfgme/clitrans";
     clitrans.inputs.nixpkgs.follows = "nixpkgs";
+    daeuniverse.url = "github:daeuniverse/flake.nix";
+    daeuniverse.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
