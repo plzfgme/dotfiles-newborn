@@ -21,21 +21,29 @@ rec {
     basic-cmd-tools = ./collections/basic-cmd-tools;
   };
 
-  allModules = [
-    desktop.sway
-    desktop.waybar
-    desktop.eww-bar
-    desktop.swww
+  services = {
+    mako = ./services/mako;
+  };
 
-    programs.nushell
-    programs.zsh
-    programs.foot
-    programs.alacritty
-    programs.starship
-    programs.bat
-    programs.neovim
-    programs.rofi
+  allModules = {
+    imports = [
+      desktop.sway
+      desktop.waybar
+      desktop.eww-bar
+      desktop.swww
 
-    collections.basic-cmd-tools
-  ];
+      programs.nushell
+      programs.zsh
+      programs.foot
+      programs.alacritty
+      programs.starship
+      programs.bat
+      programs.neovim
+      programs.rofi
+
+      collections.basic-cmd-tools
+
+      services.mako
+    ];
+  };
 }

@@ -1,7 +1,9 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 {
-  imports = outputs.homeManagerModules.allModules ++ [
+  imports = [
     inputs.nix-colors.homeManagerModules.default
+
+    outputs.homeManagerModules.allModules
   ];
 
   # Nix

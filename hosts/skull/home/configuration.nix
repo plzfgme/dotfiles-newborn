@@ -1,7 +1,9 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 {
-  imports = outputs.homeManagerModules.allModules ++ [
+  imports = [
     inputs.nix-colors.homeManagerModules.default
+
+    outputs.homeManagerModules.allModules
   ];
 
   # Nix
@@ -32,6 +34,7 @@
       '';
       startup = [
         { command = "nm-applet"; }
+        { command = "blueman-applet"; }
         { command = "thunderbird"; }
       ];
     };
@@ -54,10 +57,15 @@
     programs.nushell.enable = true;
     programs.zsh.enable = true;
     programs.starship.enable = true;
-    programs.neovim.enable = true;
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
     programs.rofi.enable = true;
 
     collections.basic-cmd-tools.enable = true;
+
+    services.mako.enable = true;
   };
 
   # Color scheme
@@ -92,10 +100,6 @@
   home = {
     username = "plzfgme";
     homeDirectory = "/home/plzfgme";
-    # sessionVariables = {
-    #   http_proxy = "http://localhost:7890";
-    #   https_proxy = "http://localhost:7890";
-    # };
     packages = with pkgs; [
       nil
       nixpkgs-fmt
@@ -127,6 +131,7 @@
       tmux
       thunderbird
       networkmanagerapplet
+      steam
     ];
   };
   programs.home-manager.enable = true;
@@ -149,6 +154,8 @@
       nix-direnv.enable = true;
     };
   };
+
+  services.udiskie.enable = true;
 
   # Git
   programs.git = {
@@ -173,3 +180,4 @@
 
   home.stateVersion = "23.11";
 }
+

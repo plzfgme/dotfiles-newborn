@@ -34,6 +34,11 @@ in
       default = true;
       description = "enable basic language servers and formatters (lua-language-server, stylua, shfmt)";
     };
+    defaultEditor = mkOption {
+      type = types.bool;
+      default = false;
+      description = "set neovim as default editor";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -50,6 +55,8 @@ in
       ripgrep
       fd
     ] ++ (if cfg.enableBasicLspAndFormatters then basicLspsAndFormatters else [ ]);
+
+    home.sessionVariables.EDITOR = mkIf cfg.defaultEditor "nvim";
   };
 }
 

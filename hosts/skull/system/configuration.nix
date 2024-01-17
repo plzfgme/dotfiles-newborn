@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-gpu-amd
 
     inputs.agenix.nixosModules.default
 
@@ -30,11 +31,16 @@
             fetchSubmodules = true;
           };
           vendorHash = "sha256-OD6Ztjw2O+2bf8DYDEptp9YfMpsma/Ag1/s5rKyCTmQ=";
+          postInstall = ''
+            install -Dm444 install/dae.service $out/lib/systemd/system/dae.service
+            substituteInPlace $out/lib/systemd/system/dae.service \
+              --replace /usr/bin/dae $out/bin/dae
+          '';
         in
         (pkgs.dae.override {
           buildGoModule = args: pkgs.buildGoModule (
             args // {
-              inherit pname version src vendorHash;
+              inherit pname version src vendorHash postInstall;
             }
           );
         });
@@ -166,6 +172,13 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
+  services.blueman = {
+    enable = true;
+  };
+
+  services.udisks2.enable = true;
 
   services.openssh = {
     enable = true;
