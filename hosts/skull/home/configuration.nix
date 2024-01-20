@@ -36,6 +36,8 @@
         { command = "nm-applet"; }
         { command = "blueman-applet"; }
         { command = "thunderbird"; }
+        { command = "discord"; }
+        { command = "telegram-desktop"; }
       ];
     };
     desktop.eww-bar = {
@@ -132,6 +134,7 @@
       thunderbird
       networkmanagerapplet
       steam
+      discord
     ];
   };
   programs.home-manager.enable = true;
