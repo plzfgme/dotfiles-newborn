@@ -38,6 +38,7 @@
         { command = "thunderbird"; }
         { command = "discord"; }
         { command = "telegram-desktop"; }
+        { command = "qq"; }
       ];
     };
     desktop.eww-bar = {
@@ -135,6 +136,7 @@
       networkmanagerapplet
       steam
       discord
+      qq
     ];
   };
   programs.home-manager.enable = true;
