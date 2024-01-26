@@ -193,6 +193,9 @@
   };
   programs.zsh.enable = true;
 
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+
   virtualisation = {
     docker = {
       enable = true;
