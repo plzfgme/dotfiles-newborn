@@ -137,6 +137,7 @@
       steam
       discord
       qq
+      ncdu
     ];
   };
   programs.home-manager.enable = true;
