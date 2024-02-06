@@ -51,6 +51,14 @@
               ./hosts/skull/system/configuration.nix
             ];
           };
+
+          dragon = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/dragon/system/configuration.nix
+            ];
+          };
         };
         homeConfigurations = {
           "plzfgme@newborn" = home-manager.lib.homeManagerConfiguration {
@@ -66,6 +74,14 @@
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
               ./hosts/skull/home/configuration.nix
+            ];
+          };
+
+          "plzfgme@dragon" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+            extraSpecialArgs = { inherit inputs outputs; };
+            modules = [
+              ./hosts/dragon/home/configuration.nix
             ];
           };
         };
