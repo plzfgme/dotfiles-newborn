@@ -138,6 +138,7 @@
       discord
       qq
       ncdu
+      wireshark
     ];
   };
   programs.home-manager.enable = true;
