@@ -31,6 +31,25 @@ in
       default = "${pkgs.pavucontrol}/bin/pavucontrol";
       description = "The command to run when the audio button is clicked";
     };
+    display = {
+      resolution = {
+        x = mkOption {
+          type = types.int;
+          default = 1920;
+          description = "The horizontal resolution of the screen";
+        };
+        y = mkOption {
+          type = types.int;
+          default = 1080;
+          description = "The vertical resolution of the screen";
+        };
+      };
+      scale = mkOption {
+        type = types.float;
+        default = 1;
+        description = "The scale of the screen";
+      };
+    };
     systemd.enable = mkEnableOption "Enable systemd service";
     systemd.target = mkOption {
       type = types.str;
@@ -54,12 +73,16 @@ in
             "nohup pavucontrol &"
             "date '+%D'"
             "date '+%r'"
+            "1560"
+            "815"
           ] [
             "${pkgs.coreutils}/bin/nohup ${cfg.menuCommand} &"
             "${pkgs.coreutils}/bin/nohup ${cfg.networkCommand} &"
             "${pkgs.coreutils}/bin/nohup ${cfg.audioCommand} &"
             "${pkgs.coreutils}/bin/date '+%D'"
             "${pkgs.coreutils}/bin/date '+%r'"
+            (builtins.toString ((builtins.floor ((cfg.display.resolution.x / cfg.display.scale))) - 360))
+            (builtins.toString ((builtins.floor ((cfg.display.resolution.y / cfg.display.scale))) - 250))
           ]
             (readFile ./eww.yuck);
         };

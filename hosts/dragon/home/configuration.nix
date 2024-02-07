@@ -25,12 +25,13 @@
       enable = true;
       # Before this pull request to be merged: https://github.com/swaywm/sway/pull/7226, input method on sway only works with XWayland.
       terminal = "env -u WAYLAND_DISPLAY alacritty -e env WAYLAND_DISPLAY=$WAYLAND_DISPLAY $SHELL";
+      menu = "rofi -show drun";
       extraKeybindings = {
         "Mod4+Shift+a" = "exec bash -c \"wl-paste | clitrans --to zh-CN --preprocessors remove_newlines | pointersay\"";
         "Mod4+Shift+z" = "exec bash -c 'grim -g \"$(slurp)\" - | tesseract stdin stdout | clitrans --to zh-CN --preprocessors remove_newlines | pointersay'";
       };
       extraConfig = ''
-        output Virtual-1 resolution 1920x1080
+        output eDP-1 mode 2560x1600@60.01Hz scale 1.2
       '';
       startup = [
         { command = "nm-applet"; }
@@ -44,16 +45,23 @@
     desktop.eww-bar = {
       enable = true;
       systemd.enable = true;
+      display = {
+        resolution = {
+          x = 2560;
+          y = 1600;
+        };
+        scale = 1.2;
+      };
     };
     desktop.swww = {
       enable = true;
       systemd.enable = true;
     };
-
     programs.alacritty = {
       enable = true;
       extraSettings = {
         env.WINIT_X11_SCALE_FACTOR = "1.0";
+        font.size = 16;
       };
     };
     programs.foot.enable = true;
@@ -106,6 +114,7 @@
     packages = with pkgs; [
       nil
       nixpkgs-fmt
+      vscode
       marksman
       markdownlint-cli
       bitwarden
@@ -138,6 +147,7 @@
       discord
       qq
       ncdu
+      x11docker
     ];
   };
   programs.home-manager.enable = true;

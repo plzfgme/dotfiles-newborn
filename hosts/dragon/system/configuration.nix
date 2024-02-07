@@ -29,12 +29,12 @@
     ];
   };
 
-  services.xserver.videoDrivers = ["amdgpu" "nvidia"];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   hardware.nvidia = {
-    modesetting.enable = true;
+    # modesetting.enable = true;
     # powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -43,8 +43,8 @@
         enable = true;
         enableOffloadCmd = true;
       };
-  		amdgpuBusId = "PCI:8:0:0";
-		  nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:8:0:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
   };
 
@@ -83,6 +83,7 @@
 
   # System
   system.stateVersion = "24.05";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader
   boot.loader = {
@@ -137,7 +138,6 @@
 
   # Desktop
   services.xserver = {
-    enable = true;
     layout = "us";
     xkbVariant = "";
     dpi = 96;
@@ -155,7 +155,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c sway'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c \"WLR_DRM_DEVICES=/dev/dri/card0 sway --unsupported-gpu\"'";
       };
     };
   };
@@ -187,10 +187,7 @@
     git
     curl
     neovim
-    nushell
-    vscode
-    nil
-    nixpkgs-fmt
+    config.boot.kernelPackages.cpupower
   ];
 
   services.pipewire = {
@@ -207,6 +204,7 @@
   };
 
   services.udisks2.enable = true;
+  hardware.brillo.enable = true;
 
   services.openssh = {
     enable = true;
@@ -221,7 +219,30 @@
   };
   programs.zsh.enable = true;
 
-  services.tlp.enable = true;
+  services.tlp = {
+    enable = true;
+    settings = {
+      # Fix nvidia RTD3 issue.
+      SOUND_POWER_SAVE_ON_AC = 1;
+      SOUND_POWER_SAVE_ON_BAT = 1;
+      RUNTIME_PM_ON_AC = "auto";
+      RUNTIME_PM_ON_BAT = "auto";
+      RUNTIME_PM_DENYLIST = "01:00.0 01:00.1";
+
+      CPU_DRIVER_OPMODE_ON_AC = "active";
+      CPU_DRIVER_OPMODE_ON_BAT = "guided";
+      CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+      CPU_SCALING_GOVERNOR_ON_BAT = "ondemand";
+      CPU_SCALING_MIN_FREQ_ON_AC = 0;
+      CPU_SCALING_MAX_FREQ_ON_AC = 9999999;
+      CPU_SCALING_MIN_FREQ_ON_BAT = 0;
+      CPU_SCALING_MAX_FREQ_ON_BAT = 4500000;
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+    };
+  };
 
   virtualisation = {
     docker = {
@@ -232,7 +253,7 @@
   users.users = {
     plzfgme = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
       shell = pkgs.zsh;
     };
   };

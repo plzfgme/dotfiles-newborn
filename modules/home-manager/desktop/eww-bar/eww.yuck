@@ -13,7 +13,7 @@
 )
 
 (defwidget leftstuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "start" :spacing 6
+  (box :class "leftstuff" :orientation "h" :space-evenly false :halign "start" :spacing 6
     (left-pad-button)
   )
 )
