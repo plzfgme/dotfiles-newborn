@@ -147,7 +147,7 @@
       discord
       qq
       ncdu
-      x11docker
+      distrobox
     ];
   };
   programs.home-manager.enable = true;
