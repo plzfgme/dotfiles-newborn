@@ -134,6 +134,10 @@
   networking = {
     hostName = "dragon";
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = [ "docker0" "virbr0" ];
+    };
   };
 
   # Desktop
