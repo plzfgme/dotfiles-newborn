@@ -14,6 +14,7 @@ in
       extraConfig = ''
         width=400
         height=1000
+        anchor=bottom-right
 
         # Colors from https://github.com/catppuccin/mako/blob/main/src/mocha
         background-color=#1e1e2e
