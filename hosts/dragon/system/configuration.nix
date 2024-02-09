@@ -32,7 +32,7 @@
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   hardware.nvidia = {
-    # modesetting.enable = true;
+    modesetting.enable = true;
     # powerManagement.enable = false;
     powerManagement.finegrained = true;
     open = false;
