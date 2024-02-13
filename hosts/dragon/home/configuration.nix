@@ -157,6 +157,10 @@
       name = "Vanilla-DMZ";
       size = 24;
     };
+
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1"; # https://nixos.wiki/wiki/Wayland
+    };
   };
   programs.home-manager.enable = true;
   programs.vscode = {
