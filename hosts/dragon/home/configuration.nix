@@ -149,6 +149,14 @@
       ncdu
       distrobox
     ];
+
+    pointerCursor = {
+      package = pkgs.vanilla-dmz;
+      gtk.enable = true;
+      x11.enable = true;
+      name = "Vanilla-DMZ";
+      size = 24;
+    };
   };
   programs.home-manager.enable = true;
   programs.vscode = {
