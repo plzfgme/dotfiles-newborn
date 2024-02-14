@@ -163,6 +163,10 @@
     };
   };
   programs.home-manager.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-devedition-bin;
+  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
