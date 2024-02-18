@@ -40,6 +40,7 @@
         { command = "discord"; }
         { command = "telegram-desktop"; }
         { command = "qq"; }
+        { command = "element-desktop"; }
       ];
     };
     desktop.eww-bar = {
@@ -148,6 +149,7 @@
       qq
       ncdu
       distrobox
+      element-desktop
     ];
 
     pointerCursor = {
