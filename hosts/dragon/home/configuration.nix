@@ -150,7 +150,11 @@
       ncdu
       distrobox
       element-desktop
-      lutris
+      (lutris.override {
+        extraPkgs = pkgs: [
+          winetricks
+        ];
+      })
     ];
 
     pointerCursor = {

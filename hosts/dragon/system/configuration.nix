@@ -192,6 +192,7 @@
     curl
     neovim
     config.boot.kernelPackages.cpupower
+    gnome3.adwaita-icon-theme
   ];
 
   services.pipewire = {
