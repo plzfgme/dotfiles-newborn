@@ -150,6 +150,7 @@
       ncdu
       distrobox
       element-desktop
+      lutris
     ];
 
     pointerCursor = {

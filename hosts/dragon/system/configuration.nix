@@ -247,16 +247,29 @@
       CPU_HWP_DYN_BOOST_ON_BAT = 0;
     };
   };
-
   virtualisation.docker.enable = true;
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = with pkgs; [
+          OVMFFull.fd
+        ];
+      };
+    };
+  };
+  virtualisation.spiceUSBRedirection.enable = true;
   programs.virt-manager.enable = true;
 
   users.users = {
     plzfgme = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+      extraGroups = [ "libvirtd" "networkmanager" "wheel" "docker" "video" ];
       shell = pkgs.zsh;
     };
   };
