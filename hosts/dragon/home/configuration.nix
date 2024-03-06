@@ -152,9 +152,12 @@
       element-desktop
       (lutris.override {
         extraPkgs = pkgs: [
-          winetricks
+        ];
+        extraLibraries = pkgs: [
         ];
       })
+      wine
+      xdg-utils
     ];
 
     pointerCursor = {

@@ -147,10 +147,15 @@
     dpi = 96;
   };
   programs.sway.enable = true;
+  programs.sway.wrapperFeatures.gtk = true;
   xdg = {
     portal = {
       enable = true;
       wlr.enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
     };
   };
   programs.dconf.enable = true;
