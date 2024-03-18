@@ -196,6 +196,7 @@
     git
     curl
     neovim
+    file
     config.boot.kernelPackages.cpupower
     gnome3.adwaita-icon-theme
   ];
