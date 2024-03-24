@@ -10,8 +10,8 @@
 
     inputs.agenix.nixosModules.default
 
-    inputs.daeuniverse.nixosModules.dae
-    inputs.daeuniverse.nixosModules.daed
+    # inputs.daeuniverse.nixosModules.dae
+    # inputs.daeuniverse.nixosModules.daed
 
     outputs.nixosModules.allModules
 
@@ -53,31 +53,31 @@
 
     services.dae = {
       enable = true;
-      package =
-        let
-          pname = "dae";
-          version = "unstable-2023-11-15";
-          src = pkgs.fetchFromGitHub {
-            owner = "daeuniverse";
-            repo = pname;
-            rev = "25c047a766a8ae33e6acdecd9b5ab74b3d9baeb1";
-            hash = "sha256-iwqNVkjYNNd46Yu1vt427aW0srCkZoG8bTGKimP3AjM=";
-            fetchSubmodules = true;
-          };
-          vendorHash = "sha256-OD6Ztjw2O+2bf8DYDEptp9YfMpsma/Ag1/s5rKyCTmQ=";
-          postInstall = ''
-            install -Dm444 install/dae.service $out/lib/systemd/system/dae.service
-            substituteInPlace $out/lib/systemd/system/dae.service \
-              --replace /usr/bin/dae $out/bin/dae
-          '';
-        in
-        (pkgs.dae.override {
-          buildGoModule = args: pkgs.buildGoModule (
-            args // {
-              inherit pname version src vendorHash postInstall;
-            }
-          );
-        });
+      # package =
+      # let
+      # pname = "dae";
+      # version = "unstable-2023-11-15";
+      # src = pkgs.fetchFromGitHub {
+      # owner = "daeuniverse";
+      # repo = pname;
+      # rev = "25c047a766a8ae33e6acdecd9b5ab74b3d9baeb1";
+      # hash = "sha256-iwqNVkjYNNd46Yu1vt427aW0srCkZoG8bTGKimP3AjM=";
+      # fetchSubmodules = true;
+      # };
+      # vendorHash = "sha256-OD6Ztjw2O+2bf8DYDEptp9YfMpsma/Ag1/s5rKyCTmQ=";
+      # postInstall = ''
+      # install -Dm444 install/dae.service $out/lib/systemd/system/dae.service
+      # substituteInPlace $out/lib/systemd/system/dae.service \
+      #  --replace /usr/bin/dae $out/bin/dae
+      # '';
+      # in
+      # (pkgs.dae.override {
+      # buildGoModule = args: pkgs.buildGoModule (
+      # args // {
+      # inherit pname version src vendorHash postInstall;
+      # }
+      # );
+      # });
     };
   };
 
@@ -142,8 +142,10 @@
 
   # Desktop
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      variant = "";
+      layout = "us";
+    };
     dpi = 96;
   };
   programs.sway.enable = true;
@@ -171,9 +173,11 @@
 
   fonts = {
     enableDefaultPackages = true;
+    fontDir.enable = true;
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-emoji
       liberation_ttf
       corefonts

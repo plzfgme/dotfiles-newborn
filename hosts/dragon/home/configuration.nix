@@ -158,6 +158,7 @@
       })
       wine
       xdg-utils
+      gamescope
     ];
 
     pointerCursor = {
