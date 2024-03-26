@@ -180,9 +180,16 @@
       noto-fonts-cjk-serif
       noto-fonts-emoji
       liberation_ttf
+      source-han-sans
+      source-han-serif
+      source-han-mono
       corefonts
       font-awesome
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      iosevka
+      fira-mono
+      fira-code
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraMono" "FiraCode" "Iosevka" ]; })
     ];
     fontconfig = {
       defaultFonts = {
