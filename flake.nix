@@ -15,12 +15,8 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     eww.url = "github:ralismark/eww/tray-3";
     eww.inputs.nixpkgs.follows = "nixpkgs";
-    pointersay.url = "github:plzfgme/pointersay";
-    pointersay.inputs.nixpkgs.follows = "nixpkgs";
-    clitrans.url = "github:plzfgme/clitrans";
-    clitrans.inputs.nixpkgs.follows = "nixpkgs";
-    # daeuniverse.url = "github:daeuniverse/flake.nix";
-    # daeuniverse.inputs.nixpkgs.follows = "nixpkgs";
+    wl_translation_window.url = "github:plzfgme/wl_translation_window";
+    wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:

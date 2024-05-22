@@ -27,8 +27,8 @@
       terminal = "env -u WAYLAND_DISPLAY alacritty -e env WAYLAND_DISPLAY=$WAYLAND_DISPLAY $SHELL";
       menu = "rofi -show drun";
       extraKeybindings = {
-        "Mod4+Shift+a" = "exec bash -c \"wl-paste | clitrans --to zh-CN --preprocessors remove_newlines | pointersay\"";
-        "Mod4+Shift+z" = "exec bash -c 'grim -g \"$(slurp)\" - | tesseract stdin stdout | clitrans --to zh-CN --preprocessors remove_newlines | pointersay'";
+        "Mod4+Shift+a" = "exec bash -c 'wl-paste | wl_translation_window --from-lang auto --to-lang zh-CN'";
+        "Mod4+Shift+z" = "exec bash -c 'grim -g \"$(slurp)\" - | tesseract stdin stdout | wl_translation_window --from-lang auto --to-lang zh-CN'";
       };
       extraConfig = ''
         output eDP-1 mode 2560x1600@60.01Hz scale 1.2
@@ -127,8 +127,7 @@
       qq
       libreoffice
       xfce.thunar
-      inputs.pointersay.packages.x86_64-linux.default
-      inputs.clitrans.packages.x86_64-linux.default
+      inputs.wl_translation_window.packages.x86_64-linux.default
       nodejs_21 # copilot.vim
       grim
       slurp
