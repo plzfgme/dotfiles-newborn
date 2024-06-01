@@ -13,7 +13,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    eww.url = "github:ralismark/eww/tray-3";
+    eww.url = "github:elkowar/eww";
     eww.inputs.nixpkgs.follows = "nixpkgs";
     wl_translation_window.url = "github:plzfgme/wl_translation_window";
     wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";

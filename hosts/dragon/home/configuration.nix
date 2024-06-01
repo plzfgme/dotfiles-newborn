@@ -128,7 +128,7 @@
       libreoffice
       xfce.thunar
       inputs.wl_translation_window.packages.x86_64-linux.default
-      nodejs_21 # copilot.vim
+      nodejs_22 # copilot.vim
       grim
       slurp
       tesseract
