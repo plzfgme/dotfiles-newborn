@@ -4,6 +4,7 @@ rec {
     waybar = ./desktop/waybar;
     eww-bar = ./desktop/eww-bar;
     swww = ./desktop/swww;
+    i3 = ./desktop/i3;
   };
 
   programs = {
@@ -31,6 +32,7 @@ rec {
       desktop.waybar
       desktop.eww-bar
       desktop.swww
+      desktop.i3
 
       programs.nushell
       programs.zsh

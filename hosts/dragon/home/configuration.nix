@@ -38,11 +38,34 @@
         { command = "blueman-applet"; }
         { command = "thunderbird"; }
         { command = "discord"; }
-        { command = "telegram-desktop"; }
+        # { command = "telegram-desktop"; }
         { command = "qq"; }
         { command = "element-desktop"; }
       ];
     };
+
+    desktop.i3 = {
+      enable = true;
+      terminal = "alacritty";
+      menu = "rofi -show drun";
+      extraKeybindings = {
+        "Mod4+Shift+a" = "exec bash -c 'wl-paste | wl_translation_window --from-lang auto --to-lang zh-CN'";
+        "Mod4+Shift+z" = "exec bash -c 'grim -g \"$(slurp)\" - | tesseract stdin stdout | wl_translation_window --from-lang auto --to-lang zh-CN'";
+      };
+      # extraConfig = ''
+      #   output eDP-1 mode 2560x1600@60.01Hz scale 1.2
+      # '';
+      startup = [
+        { command = "nm-applet"; }
+        { command = "blueman-applet"; }
+        { command = "thunderbird"; }
+        { command = "discord"; }
+        # { command = "telegram-desktop"; }
+        { command = "qq"; }
+        { command = "element-desktop"; }
+      ];
+    };
+
     desktop.eww-bar = {
       enable = true;
       systemd.enable = true;
@@ -158,6 +181,8 @@
       wine
       xdg-utils
       gamescope
+      prismlauncher
+      config.nur.repos.linyinfeng.wemeet
     ];
 
     pointerCursor = {

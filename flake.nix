@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-23_11.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -19,7 +20,7 @@
     wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flake-parts, ... }:
+  outputs = inputs@{ self, nixpkgs, nur, home-manager, flake-parts, ... }:
     let
       inherit (self) outputs;
     in
@@ -36,6 +37,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
+              nur.nixosModules.nur
               ./hosts/newborn/system/configuration.nix
             ];
           };
@@ -44,6 +46,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
+              nur.nixosModules.nur
               ./hosts/skull/system/configuration.nix
             ];
           };
@@ -52,6 +55,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
+              nur.nixosModules.nur
               ./hosts/dragon/system/configuration.nix
             ];
           };
@@ -61,6 +65,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
+              nur.hmModules.nur
               ./hosts/newborn/home/configuration.nix
             ];
           };
@@ -69,6 +74,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
+              nur.hmModules.nur
               ./hosts/skull/home/configuration.nix
             ];
           };
@@ -77,6 +83,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
+              nur.hmModules.nur
               ./hosts/dragon/home/configuration.nix
             ];
           };

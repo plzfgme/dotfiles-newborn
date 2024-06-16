@@ -142,11 +142,18 @@
 
   # Desktop
   services.xserver = {
+    enable = true;
+
     xkb = {
       variant = "";
       layout = "us";
     };
     dpi = 96;
+
+    displayManager.startx.enable = true;
+    windowManager.i3 = {
+      enable = true;
+    };
   };
   programs.sway.enable = true;
   programs.sway.wrapperFeatures.gtk = true;
@@ -166,7 +173,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c \"WLR_DRM_DEVICES=/dev/dri/card0 sway --unsupported-gpu\"'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c \"WLR_DRM_DEVICES=/dev/dri/card1 sway --unsupported-gpu\"'";
       };
     };
   };
