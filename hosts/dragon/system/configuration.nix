@@ -216,6 +216,7 @@
     neovim
     file
     config.boot.kernelPackages.cpupower
+    config.boot.kernelPackages.perf
     gnome3.adwaita-icon-theme
   ];
 
