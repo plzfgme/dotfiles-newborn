@@ -183,6 +183,7 @@
       gamescope
       prismlauncher
       config.nur.repos.linyinfeng.wemeet
+      zed-editor
     ];
 
     pointerCursor = {

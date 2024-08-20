@@ -5,6 +5,10 @@ return {
       servers = {
         nil_ls = {},
         typst_lsp = {},
+        elixirls = {
+          cmd = { "elixir-ls" },
+          filetypes = { "elixir" },
+        },
       },
     },
   },

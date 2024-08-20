@@ -61,7 +61,7 @@ in
   config = mkIf cfg.enable (mkMerge [
     {
       home.packages = with pkgs; [
-        eww-wayland
+        eww
       ];
 
       xdg.configFile = {
@@ -130,8 +130,8 @@ in
 
         Service = {
           Environment = "PATH=${pkgs.bash}/bin";
-          ExecStart = "${pkgs.eww-wayland}/bin/eww daemon --no-daemonize -c ${config.xdg.configHome}/eww-bar";
-          ExecStartPost = "${pkgs.eww-wayland}/bin/eww open bar -c ${config.xdg.configHome}/eww-bar";
+          ExecStart = "${pkgs.eww}/bin/eww daemon --no-daemonize -c ${config.xdg.configHome}/eww-bar";
+          ExecStartPost = "${pkgs.eww}/bin/eww open bar -c ${config.xdg.configHome}/eww-bar";
         };
 
         Install = { WantedBy = [ cfg.systemd.target ]; };

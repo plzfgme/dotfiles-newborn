@@ -14,8 +14,9 @@
     nix-colors.url = "github:misterio77/nix-colors";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-eww.url = "github:NixOS/nixpkgs/81736c5f250fd815a68f1bd999a7de4710884b85";
     eww.url = "github:elkowar/eww";
-    eww.inputs.nixpkgs.follows = "nixpkgs";
+    eww.inputs.nixpkgs.follows = "nixpkgs-eww";
     wl_translation_window.url = "github:plzfgme/wl_translation_window";
     wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";
   };
