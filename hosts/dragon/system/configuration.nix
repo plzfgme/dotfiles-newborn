@@ -217,7 +217,16 @@
     config.boot.kernelPackages.cpupower
     config.boot.kernelPackages.perf
     gnome3.adwaita-icon-theme
+    lsof
+    sysstat
   ];
+
+  services.sysstat = {
+    enable = true;
+  };
+  services.locate = {
+    enable = true;
+  };
 
   services.pipewire = {
     enable = true;
