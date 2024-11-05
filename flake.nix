@@ -60,6 +60,15 @@
               ./hosts/dragon/system/configuration.nix
             ];
           };
+
+          vm = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              nur.nixosModules.nur
+              ./hosts/vm/system/configuration.nix
+            ];
+          };
         };
         homeConfigurations = {
           "plzfgme@newborn" = home-manager.lib.homeManagerConfiguration {
@@ -86,6 +95,15 @@
             modules = [
               nur.hmModules.nur
               ./hosts/dragon/home/configuration.nix
+            ];
+          };
+
+          "plzfgme@vm" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+            extraSpecialArgs = { inherit inputs outputs; };
+            modules = [
+              nur.hmModules.nur
+              ./hosts/vm/home/configuration.nix
             ];
           };
         };
