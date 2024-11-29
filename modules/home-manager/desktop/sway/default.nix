@@ -160,11 +160,11 @@ in
 
         colors = {
           focused = {
-            border = "#${config.colorScheme.colors.base0D}";
-            background = "#${config.colorScheme.colors.base02}";
-            text = "#${config.colorScheme.colors.base0D}";
-            indicator = "#${config.colorScheme.colors.base0D}";
-            childBorder = "#${config.colorScheme.colors.base0D}";
+            border = "#${config.colorScheme.palette.base0D}";
+            background = "#${config.colorScheme.palette.base02}";
+            text = "#${config.colorScheme.palette.base0D}";
+            indicator = "#${config.colorScheme.palette.base0D}";
+            childBorder = "#${config.colorScheme.palette.base0D}";
           };
         };
 

@@ -219,6 +219,9 @@
     gnome3.adwaita-icon-theme
     lsof
     sysstat
+    man-pages
+    man-pages-posix
+    linux-manual
   ];
 
   services.sysstat = {
@@ -286,7 +289,7 @@
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
-      package = pkgs.qemu_kvm;
+      package = pkgs.qemu;
       runAsRoot = true;
       swtpm.enable = true;
       ovmf = {
