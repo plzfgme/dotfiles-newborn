@@ -170,6 +170,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.greetd = {
     enable = true;
+    vt = 2;
     settings = {
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'zsh --login -c \"WLR_DRM_DEVICES=/dev/dri/card1 sway --unsupported-gpu\"'";
@@ -201,7 +202,7 @@
       defaultFonts = {
         sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "Noto Sans CJK TC" "Noto Sans CJK JP" "Noto Sans CJK KR" "Noto Color Emoji" ];
         serif = [ "Noto Serif" "Noto Serif CJK SC" "Noto Serif CJK TC" "Noto Serif CJK JP" "Noto Serif CJK KR" "Noto Color Emoji" ];
-        monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" "Noto Sans Mono CJK TC" "Noto Sans Mono CJK JP" "Noto Sans Mono CJK KR" "Noto Color Emoji" ];
+        monospace = [ "FiraCode Nerd Font" "JetBrainsMono Nerd Font" "Noto Sans Mono CJK SC" "Noto Sans Mono CJK TC" "Noto Sans Mono CJK JP" "Noto Sans Mono CJK KR" "Noto Color Emoji" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

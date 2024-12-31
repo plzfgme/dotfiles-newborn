@@ -24,7 +24,7 @@
     desktop.sway = {
       enable = true;
       # Before this pull request to be merged: https://github.com/swaywm/sway/pull/7226, input method on sway only works with XWayland.
-      terminal = "env -u WAYLAND_DISPLAY alacritty -e env WAYLAND_DISPLAY=$WAYLAND_DISPLAY $SHELL";
+      terminal = "env -u WAYLAND_DISPLAY kitty -e env WAYLAND_DISPLAY=$WAYLAND_DISPLAY $SHELL";
       menu = "rofi -show drun";
       extraKeybindings = {
         "Mod4+Shift+a" = "exec bash -c 'wl-paste | wl_translation_window --from-lang auto --to-lang zh-CN'";
@@ -97,6 +97,9 @@
       defaultEditor = true;
     };
     programs.rofi.enable = true;
+    programs.kitty = {
+      enable = true;
+    };
 
     collections.basic-cmd-tools.enable = true;
 

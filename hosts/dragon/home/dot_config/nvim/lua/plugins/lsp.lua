@@ -9,6 +9,7 @@ return {
           cmd = { "elixir-ls" },
           filetypes = { "elixir" },
         },
+        clojure_lsp = {},
       },
     },
   },
@@ -19,6 +20,7 @@ return {
       formatters_by_ft = {
         nix = { "nixpkgs_fmt" },
         typst = { "typstfmt" },
+        ocaml = { "ocamlformat" },
       },
     },
   },

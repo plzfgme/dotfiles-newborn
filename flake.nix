@@ -19,6 +19,8 @@
     eww.inputs.nixpkgs.follows = "nixpkgs-eww";
     wl_translation_window.url = "github:plzfgme/wl_translation_window";
     wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, nur, home-manager, flake-parts, ... }:
@@ -28,7 +30,18 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [ ];
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: { };
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        packages = {
+          vm = inputs.nixos-generators.nixosGenerate {
+            system = system;
+            specialArgs = { inherit pkgs inputs outputs; diskSize = 40 * 1024; };
+            modules = [
+              ./hosts/vm/system/configuration.nix
+            ];
+            format = "qcow";
+          };
+        };
+      };
       flake = {
         nixosModules = import ./modules/nixos;
         homeManagerModules = import ./modules/home-manager;

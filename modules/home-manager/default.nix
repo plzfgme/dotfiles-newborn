@@ -16,6 +16,7 @@ rec {
     bat = ./programs/bat;
     neovim = ./programs/neovim;
     rofi = ./programs/rofi;
+    kitty = ./programs/kitty;
   };
 
   collections = {
@@ -42,6 +43,7 @@ rec {
       programs.bat
       programs.neovim
       programs.rofi
+      programs.kitty
 
       collections.basic-cmd-tools
 

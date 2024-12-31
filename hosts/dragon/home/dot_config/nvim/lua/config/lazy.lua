@@ -23,6 +23,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.cmake" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.gleam" },
+    { import = "lazyvim.plugins.extras.lang.ocaml" },
+    { import = "lazyvim.plugins.extras.lang.zig" },
+    { import = "lazyvim.plugins.extras.lang.clojure" },
+    { import = "lazyvim.plugins.extras.lang.tex" },
 
     -- copilot
     { import = "lazyvim.plugins.extras.ai.copilot" },

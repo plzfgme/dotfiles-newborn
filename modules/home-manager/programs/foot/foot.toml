@@ -1,7 +1,8 @@
 [main]
-font = "JetBrainsMono Nerd Font:size=14"
+font = "monospace:size=14"
 
 [colors]
+alpha = 0.7
 foreground = "cdd6f4"
 background = "1e1e2e"
 regular0 = "45475a"
