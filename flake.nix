@@ -21,6 +21,7 @@
     wl_translation_window.inputs.nixpkgs.follows = "nixpkgs";
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = inputs@{ self, nixpkgs, nur, home-manager, flake-parts, ... }:
@@ -71,6 +72,16 @@
             modules = [
               nur.nixosModules.nur
               ./hosts/dragon/system/configuration.nix
+            ];
+          };
+
+          dragon-wsl = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              inputs.nixos-wsl.nixosModules.default
+              nur.nixosModules.nur
+              ./hosts/dragon-wsl/system/configuration.nix
             ];
           };
 
