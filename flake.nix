@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-23_11.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs/nixos-24.11";
     nur.url = "github:nix-community/NUR";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +52,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
-              nur.nixosModules.nur
+              nur.modules.nixos.default
               ./hosts/newborn/system/configuration.nix
             ];
           };
@@ -61,7 +61,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
-              nur.nixosModules.nur
+              nur.modules.nixos.default
               ./hosts/skull/system/configuration.nix
             ];
           };
@@ -70,7 +70,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
-              nur.nixosModules.nur
+              nur.modules.nixos.default
               ./hosts/dragon/system/configuration.nix
             ];
           };
@@ -80,7 +80,7 @@
             specialArgs = { inherit inputs outputs; };
             modules = [
               inputs.nixos-wsl.nixosModules.default
-              nur.nixosModules.nur
+              nur.modules.nixos.default
               ./hosts/dragon-wsl/system/configuration.nix
             ];
           };
@@ -89,7 +89,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs outputs; };
             modules = [
-              nur.nixosModules.nur
+              nur.modules.nixos.default
               ./hosts/vm/system/configuration.nix
             ];
           };
@@ -99,7 +99,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
-              nur.hmModules.nur
+              nur.hmModules.nur.default
               ./hosts/newborn/home/configuration.nix
             ];
           };
@@ -108,7 +108,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
-              nur.hmModules.nur
+              nur.hmModules.nur.default
               ./hosts/skull/home/configuration.nix
             ];
           };
@@ -117,7 +117,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
-              nur.hmModules.nur
+              nur.hmModules.nur.default
               ./hosts/dragon/home/configuration.nix
             ];
           };
@@ -126,7 +126,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
             extraSpecialArgs = { inherit inputs outputs; };
             modules = [
-              nur.hmModules.nur
+              nur.hmModules.nur.default
               ./hosts/vm/home/configuration.nix
             ];
           };

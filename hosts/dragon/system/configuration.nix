@@ -5,7 +5,6 @@
     inputs.hardware.nixosModules.common-cpu-amd-pstate
     inputs.hardware.nixosModules.common-cpu-amd-raphael-igpu
     inputs.hardware.nixosModules.common-pc-laptop
-    inputs.hardware.nixosModules.common-pc-laptop-acpi_call
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     inputs.agenix.nixosModules.default
@@ -23,8 +22,8 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
+    extraPackages = [
+      inputs.nixpkgs-24_11.legacyPackages.x86_64-linux.rocmPackages.clr.icd # Waiting for a fix.
     ];
   };
 
@@ -81,7 +80,7 @@
   };
 
   # System
-  system.stateVersion = "24.11";
+  system.stateVersion = "23.11";
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader
@@ -154,8 +153,11 @@
       enable = true;
     };
   };
-  programs.sway.enable = true;
-  programs.sway.wrapperFeatures.gtk = true;
+  programs.sway = {
+    enable = true;
+    # package = inputs.nixpkgs-24_11.legacyPackages.x86_64-linux.sway;
+    wrapperFeatures.gtk = true;
+  };
   xdg = {
     portal = {
       enable = true;
@@ -196,7 +198,10 @@
       fira-mono
       fira-code
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraMono" "FiraCode" "Iosevka" ]; })
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-mono
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
     ];
     fontconfig = {
       defaultFonts = {
@@ -217,7 +222,7 @@
     file
     config.boot.kernelPackages.cpupower
     config.boot.kernelPackages.perf
-    gnome3.adwaita-icon-theme
+    adwaita-icon-theme
     lsof
     sysstat
     man-pages
